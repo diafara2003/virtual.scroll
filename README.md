@@ -10,7 +10,7 @@ This is a simple component that can be dropped into any JavaScript application a
 
                                           EXAMPLE
 
-HTML code
+HTML Code
 
 ```html
   <div id="visor" style="height: 500px;overflow: auto;width: 100%">
@@ -32,7 +32,7 @@ HTML code
 
 ```
 
-EXAMPLE USE  
+JavaScript Code
 
 ```javascript
      var vs = new VirtualScroll({ id_tbody: "tbodydatos", id_visor: "visor", source: cargar_informacion(), _length_tr: 15, fn_chunked: renderizar_tabla_html });
