@@ -6,7 +6,7 @@ insertarlos
 
 This is a simple component that can be dropped into any JavaScript application and provide a virtual scrolling area that is highly performant and lightweight. With zero dependencies 
 
-
+####**HTML code**
 
                                           EXAMPLE
 
