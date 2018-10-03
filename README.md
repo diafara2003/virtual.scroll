@@ -41,10 +41,6 @@ EXAMPLE HTML
     </div>
 
 
-  EXAMPLE USE 
-  
-  
-  
         var vs = new VirtualScroll({ id_tbody: "tbodydatos", id_visor: "visor", source: cargar_informacion(), _length_tr: 15,                                       fn_chunked: renderizar_tabla_html });
 
         function cargar_informacion() {
