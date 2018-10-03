@@ -8,7 +8,7 @@ This is a simple component that can be dropped into any JavaScript application a
 
 
 EXAMPLE HTML
-
+"
   <div id="visor" style="height: 500px;overflow: auto;width: 100%">
         <table id="tabledatos" style="widows: 100%;">
             <thead>
@@ -25,3 +25,4 @@ EXAMPLE HTML
             <tbody id="tbodydatos"></tbody>
         </table>
     </div>
+"
