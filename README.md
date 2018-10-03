@@ -7,9 +7,35 @@ insertarlos
 This is a simple component that can be dropped into any JavaScript application and provide a virtual scrolling area that is highly performant and lightweight. With zero dependencies 
 
 
-EXAMPLE 
+###hOW TO USE 
+
+####EXAMPLE
+
+####HTML code
+
+```html
+  <div id="visor" style="height: 500px;overflow: auto;width: 100%">
+        <table id="tabledatos" style="widows: 100%;">
+            <thead>
+                <tr>
+                    <th>position</th>
+                    <th>Nombre</th>
+                    <th>Apellido</th>
+                    <th>Edad</th>
+                    <th>Color</th>
+                    <th>Deporte</th>
+                    <th>Correo</th>
+                </tr>
+            </thead>
+            <tbody id="tbodydatos"></tbody>
+        </table>
+    </div>
 
 
+
+####EXAMPLE USE  
+
+```javascript
      var vs = new VirtualScroll({ id_tbody: "tbodydatos", id_visor: "visor", source: cargar_informacion(), _length_tr: 15, fn_chunked: renderizar_tabla_html });
 
         function cargar_informacion() {
