@@ -8,7 +8,7 @@ This is a simple component that can be dropped into any JavaScript application a
 
 
 
-                                          **EXAMPLE**
+                                          ******EXAMPLE******
 
 ****HTML Code****
 
