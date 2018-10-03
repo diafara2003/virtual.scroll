@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="-1" />
+    <title>virtual scroll</title>
+</head>
+
+<body>
+    <div id="visor" style="height: 500px;overflow: auto;width: 100%">
+        <table id="tabledatos" style="widows: 100%;">
+            <!-- <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Edad</th>
+                    <th>Deporte</th>
+                </tr>
+            </thead> -->
+            <tbody id="tbodydatos"></tbody>
+        </table>
+    </div>
+    <span>scroll-up</span>
+    <span id="_up"></span>
+    <span>scroll-down</span>
+    <span id="_down"></span>
+
+    <script>
+
+
+        function Get_top(position_scroll, length_source) {
+            var result = position_scroll;
+            if ((result + _visor_length()) > calcular_total(length_source)) {
+                result = calcular_total(length_source) - _visor_length();
+            }
+            return result;
+        }
+
+        function _visor_length() {
+            return Math.floor(document.getElementById('visor').offsetHeight);
+        }
+
+        function Get_bottom(position_scroll, length_source) {
+            var _result = calcular_total(length_source) - (Get_top(position_scroll, length_source) + _visor_length());
+            return _result < 0 ? 0 : _result;
+        }
+
+        function calcular_total(datos_length) {
+            return datos_length * length_tr();
+        }
+        function length_tr() {
+
+            return 22;
+        }
+
+        function virtual_scroll(datos, length_visor) {
+
+            var id_tabla = 'tbodydatos';
+            var from = Math.floor(length_visor / length_tr());
+            var html = '';
+
+            html += tr_scroll('tr_primero', 0);
+            html += armar_html_tabla(datos, 0, from);
+            html += tr_scroll('tr_ultimo', Get_bottom(0, datos.length));
+
+            renderizar_tabla(html);
+
+            document.getElementById('visor').addEventListener('scroll', function () {
+                var _scroll = this.scrollTop;
+                var contenedor = Math.floor(_visor_length() / length_tr())-1;
+                var html = '';
+                html += tr_scroll('tr_primero', Get_top(_scroll, datos.length));
+                html += armar_html_tabla(datos, 0, from);
+                html += tr_scroll('tr_ultimo', Get_bottom(_scroll, datos.length));
+
+                renderizar_tabla(html);
+
+                document.getElementById('_up').textContent = (Get_top(_scroll, datos.length));
+
+                document.getElementById('_down').textContent = (Get_bottom(_scroll, datos.length));
+
+            });
+        }
+        function calcular_contendor(_scroll) {
+
+        }
+
+        function tr_scroll(id, _length) {
+            var _html_tr = '';
+            _html_tr = '<tr><td id=' + id + ' style="height:' + _length + 'px"></td></tr>';
+
+            return _html_tr;
+        }
+
+        function cargar_informacion() {
+            var source = [];
+            for (let i = 0; i < 100; i++) {
+                source.push({ nombre: "andres__" + (i + 1), edad: (i + 1), deporte: 'micro___' + (i + 1) });
+
+            }
+            return source;
+        }
+
+        function renderizar_tabla(_html) {
+            document.getElementById('tbodydatos').innerHTML = _html;
+        }
+
+        function armar_html_tabla(source, index, _length) {
+
+            var _html = '';
+            for (let i = index; i < _length; i++) {
+                const element = source[i];
+                _html += '<tr>';
+                _html += '<td>' + element.nombre + '</td>';
+                _html += '<td>' + element.edad + '</td>';
+                _html += '<td>' + element.deporte + '</td>';
+                _html += '</tr>';
+            }
+
+            return _html;
+        }
+
+        (function () {
+            var source = cargar_informacion();
+            //renderizar_tabla(armar_html_tabla(source, 0, source.length));
+            virtual_scroll(source, 600);
+        })();
+
+    </script>
+
+</body>
+
+</html>
