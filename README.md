@@ -9,23 +9,24 @@ This is a simple component that can be dropped into any JavaScript application a
 
   EXAMPLE
   
-  var vs = new VirtualScroll({ id_tbody: "tbodydatos", id_visor: "visor", source: cargar_informacion(), _length_tr: 15, fn_chunked: renderizar_tabla_html });
+  var vs = new VirtualScroll({ id_tbody: "tbodydatos", id_visor: "visor", source: cargar_informacion(), _length_tr: 15, 
+            fn_chunked: renderizar_tabla_html });
 
-        function cargar_informacion() {
-            var source = [];
-            for (let i = 0; i < 2000; i++) {
-                source.push({
-                    firstName: "John",
-                    lastName: "Doe",
-                    age: 50,
-                    eyeColor: "blue",
-                    sport: "Micro",
-                    mail: "jaud_@hotmsi.com"
-                });
+                  function cargar_informacion() {
+                      var source = [];
+                      for (let i = 0; i < 2000; i++) {
+                          source.push({
+                              firstName: "John",
+                              lastName: "Doe",
+                              age: 50,
+                              eyeColor: "blue",
+                              sport: "Micro",
+                              mail: "jaud_@hotmsi.com"
+                          });
 
-            }
-            return source;
-        }
+                      }
+                      return source;
+                  }
 
 
         function renderizar_tabla_html(_i, f, source) {
