@@ -59,13 +59,11 @@ class VirtualScroll {
         this._v_object._length_Datos = this._setting.source.length;
         let _missing = this._v_object._length_Datos - this._v_object._from;
 
-        console.log("from:" + this._v_object._from);
-
         this._v_object._html += this._tr_scroll(tr_primero, 0);
         this._v_object._html += this._setting.fn_chunked(this._v_object._inital, this._v_object._from, this._setting.source);
         this._v_object._html += this._tr_scroll(tr_ultimo, _missing * this._setting._length_tr);
         this._v_object._rendering_table(this._setting.id_tbody);
-
+        console.log("total renderizado:____" +  this._v_object._from);
         let _visor_scrollind: HTMLElement | null = document.getElementById(this._setting.id_visor);
 
         if (_visor_scrollind != null) {
@@ -76,7 +74,7 @@ class VirtualScroll {
                     this._scrolling(_visor_scrollind.scrollTop);
                 }
             });
-
+ 
         }
     }
     _length_viewer(): number {
@@ -100,8 +98,8 @@ class VirtualScroll {
 
     }
 
-    _chunked(): string {
-        let _html: string = this._setting.fn_chunked(0, 100, this._setting.source);
+    _chunked(_i: number,_f:number): string {
+        let _html: string = this._setting.fn_chunked(_i, _f, this._setting.source);
 
         return _html;
     }
@@ -144,7 +142,7 @@ class VirtualScroll {
             this._v_object._container = _container;
             console.log("contenedor:__________" + this._v_object._container);
             let _from = this._v_object._from * this._v_object._container;
-            let _inital = this._v_object._from * (this._v_object._container - 1) - this._v_object._from;
+            let _inital = this._v_object._from * (this._v_object._container - 1) - this._get_length_viewver();
             let _missing: number = this._v_object._length_Datos - _from;
 
             if (_inital < 0) {
@@ -162,7 +160,7 @@ class VirtualScroll {
 
 
             console.log("inicial_________:____" + _inital);
-            console.log("total renderizado:____" + _from);
+            console.log("total renderizado:____" + (_from-_inital));
 
         }
 
@@ -181,10 +179,6 @@ class VirtualScroll {
                 result += 1;
             }
         }
-
-        // if (result == 0) {
-        //     result = 1;
-        // }
 
         return result;
 

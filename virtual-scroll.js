@@ -28,11 +28,11 @@ var VirtualScroll = /** @class */ (function () {
         this._v_object._from = Math.floor(this._length_viewer()) + 20;
         this._v_object._length_Datos = this._setting.source.length;
         var _missing = this._v_object._length_Datos - this._v_object._from;
-        console.log("from:" + this._v_object._from);
         this._v_object._html += this._tr_scroll(tr_primero, 0);
         this._v_object._html += this._setting.fn_chunked(this._v_object._inital, this._v_object._from, this._setting.source);
         this._v_object._html += this._tr_scroll(tr_ultimo, _missing * this._setting._length_tr);
         this._v_object._rendering_table(this._setting.id_tbody);
+        console.log("total renderizado:____" + this._v_object._from);
         var _visor_scrollind = document.getElementById(this._setting.id_visor);
         if (_visor_scrollind != null) {
             _visor_scrollind.addEventListener('scroll', function (e) {
@@ -56,8 +56,8 @@ var VirtualScroll = /** @class */ (function () {
         _html_tr = '<tr><td id=' + id + ' style="height:' + _length + 'px"></td></tr>';
         return _html_tr;
     };
-    VirtualScroll.prototype._chunked = function () {
-        var _html = this._setting.fn_chunked(0, 100, this._setting.source);
+    VirtualScroll.prototype._chunked = function (_i, _f) {
+        var _html = this._setting.fn_chunked(_i, _f, this._setting.source);
         return _html;
     };
     VirtualScroll.prototype._get_length_viewver = function () {
@@ -101,7 +101,7 @@ var VirtualScroll = /** @class */ (function () {
             this._v_object._html += this._tr_scroll(tr_ultimo, _missing * this._setting._length_tr);
             this._v_object._rendering_table(this._setting.id_tbody);
             console.log("inicial_________:____" + _inital);
-            console.log("total renderizado:____" +( _from- _inital));
+            console.log("total renderizado:____" + (_from - _inital));
         }
     };
     VirtualScroll.prototype._get_container = function () {
@@ -114,9 +114,6 @@ var VirtualScroll = /** @class */ (function () {
                 result += 1;
             }
         }
-        // if (result == 0) {
-        //     result = 1;
-        // }
         return result;
     };
     VirtualScroll.prototype._container = function (_register) {
