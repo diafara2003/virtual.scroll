@@ -72,19 +72,6 @@ This is a simple component that can be dropped into any JavaScript application a
                 _html += '<td>' + element.sport + '</td>';
                 _html += '<td>' + element.mail + '</td>';
 
-                _html += '<td>' + element.firstName + '</td>';
-                _html += '<td>' + element.lastName + '</td>';
-                _html += '<td>' + element.age + '</td>';
-                _html += '<td>' + element.eyeColor + '</td>';
-                _html += '<td>' + element.sport + '</td>';
-                _html += '<td>' + element.mail + '</td>';
-
-                _html += '<td>' + element.firstName + '</td>';
-                _html += '<td>' + element.lastName + '</td>';
-                _html += '<td>' + element.age + '</td>';
-                _html += '<td>' + element.eyeColor + '</td>';
-                _html += '<td>' + element.sport + '</td>';
-                _html += '<td>' + element.mail + '</td>';
                 _html += '</tr>';
             }
 
