@@ -1,34 +1,21 @@
-<!DOCTYPE html>
-<html lang="en">
+# virtual.scroll
+**VIRTUAL SCROLL**
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-    <style>
-        body {
-            padding: 2px 5px;
-            font-size: 11px;
-            font-family: Verdana, Geneva, Tahoma, sans-serif !Important;
-        }
+Proyecto de virtual scroll realizado en javascript para poder
+renderizar mucha informacion y no satuar el DOM al momento de
+insertarlos
 
-        thead {
-            background-color: #2881ba;
-            font-family: Verdana, Geneva, Tahoma, sans-serif !Important;
-            color: White;
-        }
 
-        th {
-            font-weight: normal;
-            padding: 2px 2px !Important;
-        }
-    </style>
-</head>
+This is a simple component that can be dropped into any JavaScript application and provide a virtual scrolling area that is highly performant and lightweight. With zero dependencies 
 
-<body>
-    <div id="visor" style="height: 500px;overflow: auto;width: 100%">
-     
+
+
+                                          ******EXAMPLE******
+
+****HTML Code****
+
+```html
+  <div id="visor" style="height: 500px;overflow: auto;width: 100%">
         <table id="tabledatos" style="widows: 100%;">
             <thead>
                 <tr>
@@ -44,15 +31,13 @@
             <tbody id="tbodydatos"></tbody>
         </table>
     </div>
-    <span>scroll-up</span>
-    <span id="_up"></span>
-    <span>scroll-down</span>
-    <span id="_down"></span>
 
-    <script src="virtual-scroll.js"></script>
-    <script>
+```
 
-        var vs = new VirtualScroll({ id_tbody: "tbodydatos", id_visor: "visor", source: cargar_informacion(), _length_tr: 15, fn_chunked: renderizar_tabla_html });
+****JavaScript Code****
+
+```javascript
+     var vs = new VirtualScroll({ id_tbody: "tbodydatos", id_visor: "visor", source: cargar_informacion(), _length_tr: 15, fn_chunked: renderizar_tabla_html });
 
         function cargar_informacion() {
             var source = [];
@@ -95,8 +80,5 @@
             return _html;
         }
 
+```
 
-    </script>
-</body>
-
-</html>
