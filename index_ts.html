@@ -28,72 +28,94 @@
 
 <body>
     <div id="visor" style="height: 500px;overflow: auto;width: 100%">
-     
+
         <table id="tabledatos" style="widows: 100%;">
             <thead>
                 <tr>
                     <th>position</th>
-                    <th>Nombre</th>
-                    <th>Apellido</th>
-                    <th>Edad</th>
-                    <th>Color</th>
-                    <th>Deporte</th>
-                    <th>Correo</th>
+                    <th>Name</th>
+                    <th>Last name</th>
+                    <th>Phone</th>
+                    <th>email</th>
+                    <th>cell</th>
+                    <th>age</th>
+                    <th>gender</th>
+                    <th>location</th>
+                    <th>picture</th>
                 </tr>
             </thead>
             <tbody id="tbodydatos"></tbody>
         </table>
     </div>
-    <span>scroll-up</span>
-    <span id="_up"></span>
-    <span>scroll-down</span>
-    <span id="_down"></span>
+
 
     <script src="virtual-scroll.js"></script>
     <script>
 
-        var vs = new VirtualScroll({ id_tbody: "tbodydatos", id_visor: "visor", source: cargar_informacion(), _length_tr: 15, fn_chunked: renderizar_tabla_html });
+        var vs;
 
         function cargar_informacion() {
-            var source = [];
-            for (let i = 0; i < 2000; i++) {
-                source.push({
-                    firstName: "John",
-                    lastName: "Doe",
-                    age: 50,
-                    eyeColor: "blue",
-                    sport: "Micro",
-                    mail: "jaud_@hotmsi.com"
-                });
+
+
+            const api = 'https://randomuser.me/api/?results=1000';
+            const xhr = new XMLHttpRequest();
+
+            xhr.open('GET', api, true);
+
+
+            xhr.onload = function () {
+                new VirtualScroll({ id_tbody: "tbodydatos", id_visor: "visor", source: JSON.parse(xhr.responseText).results, _length_tr: 15, fn_chunked: renderizar_tabla_html });
 
             }
-            return source;
+
+            xhr.send();
+
         }
 
 
         function renderizar_tabla_html(_i, f, source) {
 
-            var _html = '';
+
+            /*
+                                <th>position</th>
+                                <th>Name</th>
+                                <th>Last name</th>
+                                <th>Phone</th>
+                                <th>email</th>
+                                <th>cell</th>
+                                <th>age</th>
+                                <th>genre</th>
+                                <th>location</th>
+            */
+            var _render = '';
             for (let i = _i; i < f; i++) {
                 const element = source[i];
 
                 if (element == undefined) {
                     break;
                 }
-                _html += '<tr>';
-                _html += '<td>' + (i + 1) + '</td>';
-                _html += '<td>' + element.firstName + '</td>';
-                _html += '<td>' + element.lastName + '</td>';
-                _html += '<td>' + element.age + '</td>';
-                _html += '<td>' + element.eyeColor + '</td>';
-                _html += '<td>' + element.sport + '</td>';
-                _html += '<td>' + element.mail + '</td>';
-
-                _html += '</tr>';
+                _render += '<tr>';
+                _render += '<td>' + (i + 1) + '</td>';
+                _render += '<td>' + element.name.first + '</td>';
+                _render += '<td>' + element.name.last + '</td>';
+                _render += '<td>' + element.phone + '</td>';
+                _render += '<td>' + element.email + '</td>';
+                _render += '<td>' + element.cell + '</td>';
+                _render += '<td>' + element.dob.age + '</td>';
+                _render += '<td>' + element.gender + '</td>';
+                _render += '<td>' + element.location.city + '</td>';
+                _render += '<td> <img src=' + element.picture.thumbnail + '></img></td>';
+                _render += '</tr>';
             }
 
-            return _html;
+            return _render;
         }
+
+
+
+        (function () {
+            cargar_informacion();
+        })();
 
 
     </script>
