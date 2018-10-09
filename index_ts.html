@@ -50,8 +50,9 @@
             </thead>
             <tbody id="tbodydatos">
                 <tr>
-                    <td colspan="10" style="height: 250px;text-align: center;border: 1px solid gray"><h1>Cargando
-                            Datos...</h1> </td>
+                    <td colspan="10" style="height: 250px;text-align: center;border: 1px solid gray">
+                        <h1>Cargando Datos del API...</h1>
+                    </td>
                 </tr>
             </tbody>
         </table>
@@ -66,13 +67,14 @@
         function cargar_informacion() {
 
 
-            const api = 'https://randomuser.me/api/?results=1000';
+            const api = 'https://randomuser.me/api/?results=5000';
             const xhr = new XMLHttpRequest();
 
             xhr.open('GET', api, true);
 
 
             xhr.onload = function () {
+                document.getElementById('tbodydatos').innerHTML='<tr> <td colspan="10" style="height: 250px;text-align: center;border: 1px solid gray">Inicianzo Virtual Scroll</td></tr>'
                 new VirtualScroll({ id_tbody: "tbodydatos", id_visor: "visor", source: JSON.parse(xhr.responseText).results, _length_tr: 15, fn_chunked: renderizar_tabla_html });
 
             }
