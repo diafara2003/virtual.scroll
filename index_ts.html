@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
     <style>
         table {
             width: 100%;
@@ -31,9 +32,10 @@
 </head>
 
 <body>
+        
     <div id="visor" style="height: 500px;overflow: auto;width: 100%">
 
-        <table id="tabledatos" style="widows: 100%;">
+        <table id="tabledatos" style="width: 100%;">
             <thead>
                 <tr>
                     <th>position</th>
@@ -46,11 +48,17 @@
                     <th>gender</th>
                     <th>location</th>
                     <th>picture</th>
+                    <th>burn</th>
+                    <th>Calendar</th>
+                    <th>burn</th>
+                    <th>credit-card</th>                    
+                    <th>burn</th>
+                    <th>folder</th>
                 </tr>
             </thead>
             <tbody id="tbodydatos">
                 <tr>
-                    <td colspan="10" style="height: 250px;text-align: center;border: 1px solid gray">
+                    <td colspan="16" style="height: 250px;text-align: center;border: 1px solid gray">
                         <h1>Cargando Datos del API...</h1>
                     </td>
                 </tr>
@@ -67,7 +75,7 @@
         function cargar_informacion() {
 
 
-            const api = 'https://randomuser.me/api/?results=5000';
+            const api = 'https://randomuser.me/api/?results=3000';
             const xhr = new XMLHttpRequest();
 
             xhr.open('GET', api, true);
@@ -75,7 +83,12 @@
 
             xhr.onload = function () {
                 document.getElementById('tbodydatos').innerHTML='<tr> <td colspan="10" style="height: 250px;text-align: center;border: 1px solid gray">Inicianzo Virtual Scroll</td></tr>'
-                new VirtualScroll({ id_tbody: "tbodydatos", id_visor: "visor", source: JSON.parse(xhr.responseText).results, _length_tr: 15, fn_chunked: renderizar_tabla_html });
+                new VirtualScroll({
+                     id_tbody: "tbodydatos", 
+                    id_visor: "visor", 
+                    source: JSON.parse(xhr.responseText).results,
+                     _length_tr: 15,
+                      fn_chunked: renderizar_tabla_html });
 
             }
 
@@ -116,6 +129,14 @@
                 _render += '<td>' + element.gender + '</td>';
                 _render += '<td>' + element.location.city + '</td>';
                 _render += '<td> <img src=' + element.picture.thumbnail + '></img></td>';
+
+                //icons
+                _render += '<td><i class="far fa-burn"></i></td>';
+                _render += '<td><i class="far fa-calendar"></i></td>';
+                _render += '<td><i class="far fa-cloud"></i></td>';
+                _render += '<td><i class="far fa-credit-card"></i></td>';
+                _render += '<td><i class="far fa-burn"></i></td>';
+                _render += '<td><i class="fas fa-folder"></i></td>';
                 _render += '</tr>';
             }
 
