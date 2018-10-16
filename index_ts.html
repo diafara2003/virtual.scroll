@@ -5,8 +5,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
+    <title>demo virtual scroll</title>
+    <link rel="shortcut icon" href="images/link.png" type="image/x-icon">
+    <link rel="icon" href="images/link.png" type="image/x-icon">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz"
+        crossorigin="anonymous">
     <style>
         table {
             width: 100%;
@@ -32,7 +35,7 @@
 </head>
 
 <body>
-        
+
     <div id="visor" style="height: 500px;overflow: auto;width: 100%">
 
         <table id="tabledatos" style="width: 100%;">
@@ -51,7 +54,7 @@
                     <th>burn</th>
                     <th>Calendar</th>
                     <th>burn</th>
-                    <th>credit-card</th>                    
+                    <th>credit-card</th>
                     <th>burn</th>
                     <th>folder</th>
                 </tr>
@@ -75,20 +78,21 @@
         function cargar_informacion() {
 
 
-            const api = 'https://randomuser.me/api/?results=3000';
+            const api = 'https://randomuser.me/api/?results=1000';
             const xhr = new XMLHttpRequest();
 
             xhr.open('GET', api, true);
 
 
             xhr.onload = function () {
-                document.getElementById('tbodydatos').innerHTML='<tr> <td colspan="10" style="height: 250px;text-align: center;border: 1px solid gray">Inicianzo Virtual Scroll</td></tr>'
+                document.getElementById('tbodydatos').innerHTML = '<tr> <td colspan="10" style="height: 250px;text-align: center;border: 1px solid gray">Inicianzo Virtual Scroll</td></tr>'
                 new VirtualScroll({
-                     id_tbody: "tbodydatos", 
-                    id_visor: "visor", 
+                    id_tbody: "tbodydatos",
+                    id_visor: "visor",
                     source: JSON.parse(xhr.responseText).results,
-                     _length_tr: 15,
-                      fn_chunked: renderizar_tabla_html });
+                    _length_tr: 15,
+                    fn_chunked: renderizar_tabla_html
+                });
 
             }
 
