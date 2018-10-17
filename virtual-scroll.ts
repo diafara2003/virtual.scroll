@@ -133,7 +133,7 @@ class VirtualScroll {
     }
 
     _scrolling(_scrolled: number): void {
-
+debugger;
         this._v_object._scroll = _scrolled;
         let _container = this._get_container();
 

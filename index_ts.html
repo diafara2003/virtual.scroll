@@ -31,6 +31,16 @@
             font-weight: normal;
             padding: 2px 2px !Important;
         }
+        td{
+            height: 30px;
+        }
+
+        i {
+            font-size: 23px;            
+        }
+        div{
+            text-align: center;
+        }
     </style>
 </head>
 
@@ -57,17 +67,23 @@
                     <th>credit-card</th>
                     <th>burn</th>
                     <th>folder</th>
+                    <th>bolling</th>
+                    <th>bomb</th>
+                    <th>code</th>
+                    <th>futbol</th>
                 </tr>
             </thead>
             <tbody id="tbodydatos">
                 <tr>
-                    <td colspan="16" style="height: 250px;text-align: center;border: 1px solid gray">
+                    <td colspan="20" style="height: 250px;text-align: center;border: 1px solid gray">
                         <h1>Cargando Datos del API...</h1>
                     </td>
                 </tr>
             </tbody>
         </table>
     </div>
+    <span>Total renderizado:</span>
+    <span id="spntotal"></span>
 
 
     <script src="virtual-scroll.js"></script>
@@ -78,7 +94,7 @@
         function cargar_informacion() {
 
 
-            const api = 'https://randomuser.me/api/?results=1000';
+            const api = 'https://randomuser.me/api/?results=3000';
             const xhr = new XMLHttpRequest();
 
             xhr.open('GET', api, true);
@@ -90,7 +106,7 @@
                     id_tbody: "tbodydatos",
                     id_visor: "visor",
                     source: JSON.parse(xhr.responseText).results,
-                    _length_tr: 15,
+                    _length_tr: 30,
                     fn_chunked: renderizar_tabla_html
                 });
 
@@ -135,12 +151,17 @@
                 _render += '<td> <img src=' + element.picture.thumbnail + '></img></td>';
 
                 //icons
-                _render += '<td><i class="far fa-burn"></i></td>';
-                _render += '<td><i class="far fa-calendar"></i></td>';
-                _render += '<td><i class="far fa-cloud"></i></td>';
-                _render += '<td><i class="far fa-credit-card"></i></td>';
-                _render += '<td><i class="far fa-burn"></i></td>';
-                _render += '<td><i class="fas fa-folder"></i></td>';
+                _render += '<td><div><i class="fas fa-trash"></i></div></td>';
+                _render += '<td><div><i class="fas fa-cloud"></i></div></td>';
+                _render += '<td><div><i class="far fa-folder"></i></div></td>';
+                _render += '<td><div><i class="far fa-square"></i></div></td>';
+                _render += '<td><div><i class="far fa-circle"></i></div></td>';
+                _render += '<td><div><i class="far fa-calendar"></i></div></td>';
+
+                 _render += '<td><div><i class="fas fa-bowling-ball"></i></div></td>';
+                _render += '<td><div><i class="fas fa-bomb"></i></div></td>';
+                _render += '<td><div><i class="fas fa-code"></i></div></td>';
+                _render += '<td><div><i class="fas fa-futbol"></i></div></td>'; 
                 _render += '</tr>';
             }
 

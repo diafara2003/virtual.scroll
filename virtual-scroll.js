@@ -81,6 +81,7 @@ var VirtualScroll = /** @class */ (function () {
         return result < 0 ? 0 : result;
     };
     VirtualScroll.prototype._scrolling = function (_scrolled) {
+        debugger;
         this._v_object._scroll = _scrolled;
         var _container = this._get_container();
         if (_container != this._v_object._container) {
