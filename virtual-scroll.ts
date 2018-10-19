@@ -12,8 +12,8 @@ interface StartUp {
     _length_tr: number;
     fn_chunked: fn_chunked;
 }
-// si no
 
+// test
 class VirtualObject {
 
     _html: string = "";
