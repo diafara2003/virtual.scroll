@@ -13,8 +13,6 @@ interface StartUp {
     fn_chunked: fn_chunked;
 }
 
-// esta si es
-// test
 class VirtualObject {
 
     _html: string = "";
