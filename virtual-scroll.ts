@@ -56,7 +56,7 @@ class VirtualScroll {
         this._init();
 
     }
-
+// mentiras que no
     _init(): void {
 
         this._v_object._from = Math.floor(this._length_viewer())+20;
