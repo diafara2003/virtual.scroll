@@ -107,7 +107,8 @@
                     id_visor: "visor",
                     source: JSON.parse(xhr.responseText).results,
                     _length_tr: 30,
-                    fn_chunked: renderizar_tabla_html
+                    fn_chunked: renderizar_tabla_html,
+                    fn_rendered:_ready
                 });
 
             }
@@ -116,21 +117,12 @@
 
         }
 
+function _ready() {
+    
+}
 
         function renderizar_tabla_html(_i, f, source) {
 
-
-            /*
-                                <th>position</th>
-                                <th>Name</th>
-                                <th>Last name</th>
-                                <th>Phone</th>
-                                <th>email</th>
-                                <th>cell</th>
-                                <th>age</th>
-                                <th>genre</th>
-                                <th>location</th>
-            */
             var _render = '';
             for (let i = _i; i < f; i++) {
                 const element = source[i];

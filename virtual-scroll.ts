@@ -4,6 +4,10 @@ interface fn_chunked {
     (_i: number, _f: number, source: []): string;
 }
 
+interface fn_rendered {
+    (): void;
+}
+
 
 interface StartUp {
     id_tbody: string;
@@ -11,6 +15,7 @@ interface StartUp {
     source: [];
     _length_tr: number;
     fn_chunked: fn_chunked;
+    fn_rendered: fn_rendered;
 }
 <<<<<<< HEAD
 // asdfffff
@@ -56,10 +61,10 @@ class VirtualScroll {
         this._init();
 
     }
-// mentiras que no
+    // mentiras que no
     _init(): void {
 
-        this._v_object._from = Math.floor(this._length_viewer())+20;
+        this._v_object._from = Math.floor(this._length_viewer()) + 20;
         this._v_object._length_Datos = this._setting.source.length;
         let _missing = this._v_object._length_Datos - this._v_object._from;
 
@@ -67,18 +72,19 @@ class VirtualScroll {
         this._v_object._html += this._setting.fn_chunked(this._v_object._inital, this._v_object._from, this._setting.source);
         this._v_object._html += this._tr_scroll(tr_ultimo, _missing * this._setting._length_tr);
         this._v_object._rendering_table(this._setting.id_tbody);
-        console.log("total renderizado:____" +  this._v_object._from);
+        this._setting.fn_rendered();
+        console.log("total renderizado:____" + this._v_object._from);
         let _visor_scrollind: HTMLElement | null = document.getElementById(this._setting.id_visor);
 
         if (_visor_scrollind != null) {
 
             _visor_scrollind.addEventListener('scroll', (e) => {
 
-                if (_visor_scrollind != null) {
+                if (_visor_scrollind != null && _visor_scrollind.scrollTop != 0) {
                     this._scrolling(_visor_scrollind.scrollTop);
                 }
             });
- 
+
         }
     }
     _length_viewer(): number {
@@ -102,7 +108,7 @@ class VirtualScroll {
 
     }
 
-    _chunked(_i: number,_f:number): string {
+    _chunked(_i: number, _f: number): string {
         let _html: string = this._setting.fn_chunked(_i, _f, this._setting.source);
 
         return _html;
@@ -137,7 +143,7 @@ class VirtualScroll {
     }
 
     _scrolling(_scrolled: number): void {
-debugger;
+
         this._v_object._scroll = _scrolled;
         let _container = this._get_container();
 
@@ -153,7 +159,7 @@ debugger;
                 _inital = 0;
             }
 
-            if (_from>this._v_object._length_Datos) {
+            if (_from > this._v_object._length_Datos) {
                 _from = this._v_object._length_Datos;
             }
             this._v_object._html = '';
@@ -164,14 +170,14 @@ debugger;
 
 
             console.log("inicial_________:____" + _inital);
-            console.log("total renderizado:____" + (_from-_inital));
+            console.log("total renderizado:____" + (_from - _inital));
 
         }
 
     }
 
     _get_container(): number {
-        
+
         let _register = this._get_top() + this._get_length_viewver();
         let result: number = this._container(_register);
 
