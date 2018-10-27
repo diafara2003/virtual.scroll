@@ -1,0 +1,2 @@
+trer brach remoto git checkout -t origin/nombre-branch
+eliminar branch local git branch -d nombre-branch
