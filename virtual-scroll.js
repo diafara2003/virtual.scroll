@@ -102,6 +102,7 @@ var VirtualScroll = /** @class */ (function () {
             this._v_object._html += this._setting.fn_chunked(_inital, _from, this._setting.source);
             this._v_object._html += this._tr_scroll(tr_ultimo, _missing * this._setting._length_tr);
             this._v_object._rendering_table(this._setting.id_tbody);
+            this._setting.fn_rendered();
             console.log("inicial_________:____" + _inital);
             console.log("total renderizado:____" + (_from - _inital));
         }
