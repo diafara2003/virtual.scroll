@@ -2,3 +2,4 @@ trer brach remoto git checkout -t origin/nombre-branch
 eliminar branch local git branch -d nombre-branch
 hacer checkin local git commit -a -m:"descripcion"
 hacer checkin branch remoto git push origin nombre-branch
+crear un branch remoto desde el local git push origin nombreBranch:nombreBranch
