@@ -1,3 +1,6 @@
+configuracion basica  
+        git config --global user.name
+
 trer brach remoto git checkout -t origin/nombre-branch
 eliminar branch local git branch -d nombre-branch
 hacer checkin local git commit -a -m:"descripcion"
